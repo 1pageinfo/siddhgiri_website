@@ -1,0 +1,105 @@
+<header class="top-header-bar">
+    <div class="container">
+        <div class="top-header-content">
+            <div class="header-contact-info">
+                <span class="contact-item">
+                    <i class="fa fa-phone"></i>
+                    <a href="tel:+919619406392">+91-9619406392</a>
+                </span>
+                <span class="contact-item">
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:siddhgiriexports100@gmail.com">siddhgiriexports100@gmail.com</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<header class="premium-header">
+
+    <div class="container">
+        <div class="header-inner">
+
+            <!-- Logo -->
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="assets/img/siddhgiri-logo-white.png" class="header-logo" alt="Siddhgiri Overseas - 4130 Chromoly Tubing Supplier" title="Siddhgiri Overseas">
+                </a>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="nav-area" id="navArea">
+                <ul class="premium-menu">
+
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+
+                    <!-- Products -->
+                    <li class="has-dropdown">
+                        <a href="4130-chrome-moly-pipes-and-tubes.html">Products <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="sub-menu">
+                            <li><a href="4130-chrome-moly-pipes-and-tubes.html">4130 Chrome Moly Pipes and Tubes</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Resources -->
+                    <li class="has-dropdown">
+                        <a href="quality-assurance.html">Resources <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="sub-menu">
+                            <li><a href="quality-assurance.html">Quality Assurance</a></li>
+                            <li><a href="technical-and-support.html">Technical & Support</a></li>
+                            <li><a href="industries-we-serve.html">Industries We Serve</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="contact-us.html">Contact Us</a></li>
+
+                </ul>
+            </nav>
+
+            <!-- CTA -->
+            <div class="cta-desktop">
+                <a href="contact-us.html" class="header-btn">Get A Quote</a>
+            </div>
+
+        </div>
+    </div>
+
+</header>
+
+<script>
+    // Mobile Menu Toggle
+    document.getElementById('mobileToggle').addEventListener('click', function() {
+        var navArea = document.getElementById('navArea');
+        navArea.classList.toggle('active');
+    });
+
+    // Dropdown Toggle on Mobile
+    var dropdownButtons = document.querySelectorAll('.has-dropdown > a');
+    dropdownButtons.forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            var isMobile = window.innerWidth <= 991;
+            if (isMobile) {
+                e.preventDefault();
+                var parent = this.parentElement;
+                parent.classList.toggle('active');
+            }
+        });
+    });
+
+    // Close menu when clicking on a link
+    var menuLinks = document.querySelectorAll('.premium-menu a:not(.has-dropdown > a)');
+    menuLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            var navArea = document.getElementById('navArea');
+            navArea.classList.remove('active');
+        });
+    });
+</script>
