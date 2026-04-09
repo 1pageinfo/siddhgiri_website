@@ -554,8 +554,8 @@
         <div id="header"></div>
 
         <section class="sx-hero">
-            <video class="sx-hero-video" autoplay muted loop playsinline>
-                <source src="assets/video/hero_section.mp4" type="video/mp4">
+            <video class="sx-hero-video" autoplay muted loop playsinline preload="none" poster="assets/img/home_product/4130-seamless-chromoly-tubing.jpg">
+                <source data-src="assets/video/hero_section-optimized.mp4" type="video/mp4">
             </video>
 
             <div class="container">
@@ -591,27 +591,27 @@
 
                 <div class="sx-card-grid">
                     <article class="sx-product-card sx-reveal">
-                        <img src="assets/img/home_product/4130-seamless-chromoly-tubing.png" alt="4130 Seamless Chromoly Tubing - Premium Quality" title="4130 Seamless Chromoly Tubing">
+                        <img src="assets/img/home_product/4130-seamless-chromoly-tubing.jpg" alt="4130 Seamless Chromoly Tubing - Premium Quality" title="4130 Seamless Chromoly Tubing" loading="lazy" decoding="async" width="640" height="468">
                         <h3>4130 Seamless Tubing</h3>
                     </article>
                     <article class="sx-product-card sx-reveal">
-                        <img src="assets/img/home_product/4130-chromoly-welded-tubing.png" alt="4130 Chromoly Welded Tubing - High Quality" title="4130 Welded Tubing">
+                        <img src="assets/img/home_product/4130-chromoly-welded-tubing.jpg" alt="4130 Chromoly Welded Tubing - High Quality" title="4130 Welded Tubing" loading="lazy" decoding="async" width="640" height="512">
                         <h3>4130 Welded Tubing</h3>
                     </article>
                     <article class="sx-product-card sx-reveal">
-                        <img src="assets/img/home_product/4130-chromoly-round-tubes.png" alt="4130 Chromoly Round Tubes - Precision Made" title="4130 Round Tubes">
+                        <img src="assets/img/home_product/4130-chromoly-round-tubes.jpg" alt="4130 Chromoly Round Tubes - Precision Made" title="4130 Round Tubes" loading="lazy" decoding="async" width="640" height="512">
                         <h3>4130 Round Tubes</h3>
                     </article>
                     <article class="sx-product-card sx-reveal">
-                        <img src="assets/img/home_product/4130-chromoly-roll-cage-tubing.png" alt="4130 Chromoly Roll Cage Tubing - Racing Grade" title="4130 Roll Cage Tubing">
+                        <img src="assets/img/home_product/4130-chromoly-roll-cage-tubing.jpg" alt="4130 Chromoly Roll Cage Tubing - Racing Grade" title="4130 Roll Cage Tubing" loading="lazy" decoding="async" width="640" height="512">
                         <h3>4130 Roll Cage Tubing</h3>
                     </article>
                     <article class="sx-product-card sx-reveal">
-                        <img src="assets/img/home_product/4130-chromoly-cold-drawn.png" alt="4130 Cold Drawn Chromoly Tubes" title="4130 Cold Drawn Tubes">
+                        <img src="assets/img/home_product/4130-chromoly-cold-drawn.jpg" alt="4130 Cold Drawn Chromoly Tubes" title="4130 Cold Drawn Tubes" loading="lazy" decoding="async" width="640" height="513">
                         <h3>4130 Cold Drawn Tubes</h3>
                     </article>
                     <article class="sx-product-card sx-reveal">
-                        <img src="assets/img/home_product/4130-chromoly-cut-length.png" alt="Custom Cut Length 4130 Tubing - Professional Grade" title="Custom Cut Length Tubing">
+                        <img src="assets/img/home_product/4130-chromoly-cut-length.jpg" alt="Custom Cut Length 4130 Tubing - Professional Grade" title="Custom Cut Length Tubing" loading="lazy" decoding="async" width="640" height="478">
                         <h3>Custom Cut Length Tubing</h3>
                     </article>
                 </div>
@@ -740,7 +740,7 @@
                         </article>
                     </div>
                     <div class="sx-map sx-reveal">
-                        <img src="assets/img/map.jpeg" alt="Global presence map">
+                        <img src="assets/img/siddhgiri-location-map-optimized.jpg" alt="Global presence map" loading="lazy" decoding="async" width="768" height="565">
                     </div>
                 </div>
             </div>
@@ -841,6 +841,38 @@
                 el.style.transitionDelay = (idx % 6) * 60 + "ms";
                 observer.observe(el);
             });
+        })();
+
+        (function deferHeroVideoSource() {
+            var video = document.querySelector(".sx-hero-video");
+            if (!video) {
+                return;
+            }
+
+            var source = video.querySelector("source[data-src]");
+            if (!source || !source.getAttribute("data-src")) {
+                return;
+            }
+
+            var loadVideo = function () {
+                if (source.getAttribute("src")) {
+                    return;
+                }
+                source.setAttribute("src", source.getAttribute("data-src"));
+                video.load();
+                var playPromise = video.play();
+                if (playPromise && typeof playPromise.catch === "function") {
+                    playPromise.catch(function () {
+                        return;
+                    });
+                }
+            };
+
+            if ("requestIdleCallback" in window) {
+                window.requestIdleCallback(loadVideo, { timeout: 1200 });
+            } else {
+                window.setTimeout(loadVideo, 600);
+            }
         })();
     </script>
 
